@@ -2,6 +2,9 @@ import { Suspense } from "react";
 import CabinData from "@/app/_components/CabinData";
 import Spinner from "@/app/_components/Spinner";
 
+export const metadata = {
+  title: "Cabin",
+};
 export default function Page() {
   return (
     <div>
