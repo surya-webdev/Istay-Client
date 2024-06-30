@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 function CabinCard({ cabin }) {
+  console.log(cabin);
+  // if (!cabin) return;
+
   const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
 
   return (

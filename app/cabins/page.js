@@ -1,11 +1,35 @@
 import { Suspense } from "react";
 import CabinData from "@/app/_components/CabinData";
 import Spinner from "@/app/_components/Spinner";
+import Filter from "../_components/Filter";
+import { getCabins } from "../_lib/data-service";
+
+// import { useSearchParams } from "next/navigation";
 
 export const metadata = {
   title: "Cabin",
 };
-export default function Page() {
+export default async function Page({ searchParams }) {
+  //
+  let displayData;
+
+  const filter = searchParams?.capacity ?? "all";
+
+  const cabins = await getCabins();
+
+  if (filter === "all") displayData = cabins;
+
+  if (filter === "small")
+    displayData = cabins.filter((el) => el.maxCapacity <= 2);
+
+  if (filter === "medium")
+    displayData = cabins.filter(
+      (el) => el.maxCapacity >= 3 && el.maxCapacity < 7,
+    );
+
+  if (filter === "large")
+    displayData = cabins.filter((el) => el.maxCapacity >= 8);
+
   return (
     <div>
       <h1 className="mb-5 text-4xl font-medium text-accent-400">
@@ -19,9 +43,14 @@ export default function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+      <div className="flex justify-end">
+        <div className="my-4 border-[2px] border-primary-800">
+          <Filter />
+        </div>
+      </div>
 
-      <Suspense fallback={<Spinner />}>
-        <CabinData />
+      <Suspense fallback={<Spinner />} key={filter}>
+        <CabinData cabins={displayData} />
       </Suspense>
     </div>
   );
