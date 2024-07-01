@@ -1,4 +1,5 @@
 import "@/app/_styles/globals.css";
+import { ReservationProvider } from "@/app/_components/ReservationContext";
 import Header from "@/app/_components/Header";
 
 import { Josefin_Sans } from "next/font/google";
@@ -22,7 +23,9 @@ export default function RootLayout({ children }) {
       >
         <Header />
         <div className="bg-red container mx-auto h-screen px-12 py-14">
-          <main className="text-3xl">{children}</main>
+          <main className="text-3xl">
+            <ReservationProvider>{children}</ReservationProvider>
+          </main>
         </div>
       </body>
     </html>

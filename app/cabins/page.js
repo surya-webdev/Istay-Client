@@ -3,6 +3,7 @@ import CabinData from "@/app/_components/CabinData";
 import Spinner from "@/app/_components/Spinner";
 import Filter from "../_components/Filter";
 import { getCabins } from "../_lib/data-service";
+import ReservationReminder from "@/app/_components/ReservationReminder";
 
 // import { useSearchParams } from "next/navigation";
 
@@ -52,6 +53,8 @@ export default async function Page({ searchParams }) {
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinData cabins={displayData} />
       </Suspense>
+
+      <ReservationReminder />
     </div>
   );
 }

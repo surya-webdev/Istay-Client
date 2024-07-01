@@ -1,9 +1,10 @@
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 import DateSelector from "./DateSelector";
+import { useReservation } from "./ReservationContext";
 import ReservationForm from "./ReservationForm";
 
 async function DateReservation({ cabin }) {
-  console.log(cabin);
+  // to fetch the all promise in the same time
   const [settings, bookedDate] = await Promise.all([
     getSettings(),
     getBookedDatesByCabinId(cabin.id),
