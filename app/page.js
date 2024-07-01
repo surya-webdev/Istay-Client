@@ -1,5 +1,6 @@
 import Image from "next/image";
 import bg from "../public/bg.png";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -15,12 +16,12 @@ export default function Home() {
         <h1 className="mb-10 text-8xl font-normal tracking-tight text-primary-50">
           Welcome to paradise.
         </h1>
-        <a
+        <Link
           href="/cabins"
           className="bg-accent-500 px-8 py-6 text-lg font-semibold text-primary-800 transition-all hover:bg-accent-600"
         >
           Explore luxury cabins
-        </a>
+        </Link>
       </div>
     </main>
   );

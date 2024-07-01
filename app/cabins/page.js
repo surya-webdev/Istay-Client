@@ -4,6 +4,7 @@ import Spinner from "@/app/_components/Spinner";
 import Filter from "../_components/Filter";
 import { getCabins } from "../_lib/data-service";
 import ReservationReminder from "@/app/_components/ReservationReminder";
+import { auth } from "../_lib/auth";
 
 // import { useSearchParams } from "next/navigation";
 
@@ -11,11 +12,13 @@ export const metadata = {
   title: "Cabin",
 };
 export default async function Page({ searchParams }) {
+  const session = await auth();
+  console.log(session);
+  console.log("yessssss");
   //
   let displayData;
 
   const filter = searchParams?.capacity ?? "all";
-
   const cabins = await getCabins();
 
   if (filter === "all") displayData = cabins;
