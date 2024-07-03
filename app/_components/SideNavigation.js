@@ -14,7 +14,7 @@ const navLinks = [
   },
   {
     name: "Reservations",
-    href: "/account/reservations",
+    href: "/account/reservation",
     icon: <CalendarDaysIcon className="h-5 w-5 text-primary-600" />,
   },
   {

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { auth } from "../_lib/auth";
-import Image from "next/image";
 
 export default async function Navigation() {
-  const { user } = await auth();
-  console.log(user);
+  const session = await auth();
+
+  //
 
   return (
     <nav className="z-10 text-xl">
@@ -26,12 +26,12 @@ export default async function Navigation() {
           </Link>
         </li>
         <li className="flex items-center justify-center gap-4">
-          {user ? (
+          {session?.user ? (
             <>
               <img
                 className="h-10 w-10 rounded-3xl"
-                src={user.image}
-                alt={user.name}
+                src={session.user.image}
+                alt={session.user.name}
               />
               <Link
                 href="/account"
