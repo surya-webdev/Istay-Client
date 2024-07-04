@@ -3,11 +3,10 @@ import { getCountries } from "@/app/_lib/data-service";
 // Let's imagine your colleague already built this component 😃
 
 async function SelectCountry({ defaultCountry, name, id, className }) {
-  console.log(name);
   const countries = await getCountries();
   const flag =
     countries.find((country) => country.name === defaultCountry)?.flag ?? "";
-  // console.log(countries);
+
   return (
     <select
       name={name}
