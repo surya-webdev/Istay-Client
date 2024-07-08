@@ -32,7 +32,7 @@ const authConfig = {
     async session({ session }) {
       const guest = await getGuest(session.user.email);
 
-      session.user.guestId = guest.id;
+      session.user.guestId = guest.at(0).id;
 
       return session;
     },

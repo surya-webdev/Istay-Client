@@ -22,9 +22,9 @@ export default async function Page() {
       </p>
       <UpdateForm guest={guest}>
         <SelectCountry
+          className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm"
           name="nationality"
           id="nationality"
-          className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm"
           defaultCountry={guest.nationality}
         />
       </UpdateForm>
