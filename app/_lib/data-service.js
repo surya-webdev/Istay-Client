@@ -171,8 +171,8 @@ export async function createBooking(newBooking) {
     .from("bookings")
     .insert([newBooking])
     // So that the newly created object gets returned!
-    .select()
-    .single();
+    .select();
+  // .single();
 
   if (error) {
     console.error(error);

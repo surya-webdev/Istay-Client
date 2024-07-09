@@ -4,7 +4,14 @@ import { revalidatePath } from "next/cache";
 //
 
 import { auth, session, signIn, signOut } from "./auth";
-import { deleteBooking, getBookings, updateGuest } from "./data-service";
+import {
+  createBooking,
+  deleteBooking,
+  getBookings,
+  updateBooking,
+  updateGuest,
+} from "./data-service";
+import { redirect } from "next/navigation";
 
 export async function signinAction() {
   await signIn("google", { redirectTo: "/account" });
@@ -49,4 +56,53 @@ export async function deleteReservation(bookingId) {
   else throw new Error("You don't have the access to delete this booking");
 
   revalidatePath("/account/reservation");
+}
+
+export async function updateBookingItem(formData) {
+  const session = await auth();
+
+  if (!session) throw new Error("Not an authendicated user");
+
+  // console.log(formData);
+  const numGuests = formData.get("numGuests");
+  const observations = formData.get("observations");
+  const reservationID = formData.get("reservationID");
+
+  const updatedData = {
+    numGuests,
+    observations,
+  };
+  console.log(updatedData);
+  await updateBooking(reservationID, updatedData);
+  revalidatePath(`/account/reservation/edit/${reservationID}`);
+  redirect("/account/reservation");
+}
+
+export async function createReservation(bookingData, formData) {
+  const session = await auth();
+
+  if (!session) throw new Error("Not an authendicated user");
+
+  const { startDate, endDate, id, cabinPrice, numNights } = bookingData;
+
+  console.log(cabinPrice, numNights);
+  const newBooking = {
+    cabinId: id,
+    guestId: session?.user.guestId,
+    startDate,
+    endDate,
+    cabinPrice,
+    numNights,
+    isPaid: "false",
+    extraPrice: 0,
+    hasBreakfast: "false",
+    status: "unconfirmed",
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 500),
+  };
+
+  // console.log(newBooking);
+
+  await createBooking(newBooking);
+  // console.log(newBooking);
 }

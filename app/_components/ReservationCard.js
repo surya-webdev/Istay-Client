@@ -74,7 +74,7 @@ function ReservationCard({ booking }) {
         {!isPast(startDate, endDate) ? (
           <>
             <Link
-              href={`/account/reservations/edit/${id}`}
+              href={`/account/reservation/edit/${id}`}
               className="group flex flex-grow items-center gap-2 border-b border-primary-800 px-3 text-xs font-bold uppercase text-primary-300 transition-colors hover:bg-accent-600 hover:text-primary-900"
             >
               <PencilSquareIcon className="h-5 w-5 text-primary-600 transition-colors group-hover:text-primary-800" />

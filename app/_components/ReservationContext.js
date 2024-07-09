@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 
 const Reservation = createContext();
 
-const initalState = { from: null, to: null };
+const initalState = { from: undefined, to: undefined };
 
 function ReservationProvider({ children }) {
   const [range, setRange] = useState(initalState);

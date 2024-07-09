@@ -17,7 +17,7 @@ async function DateReservation({ cabin }) {
   // console.log(user);
   return (
     <div className="grid grid-cols-1 items-center justify-center gap-10 border border-primary-400 px-2 py-10 sm:grid-cols-2">
-      <DateSelector settings={settings} bookedDate={bookedDate} />
+      <DateSelector cabin={cabin} settings={settings} bookedDate={bookedDate} />
       {session?.user ? (
         <ReservationForm cabin={cabin} user={session?.user} />
       ) : (

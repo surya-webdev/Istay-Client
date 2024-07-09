@@ -12,9 +12,7 @@ export const metadata = {
   title: "Cabin",
 };
 export default async function Page({ searchParams }) {
-  const session = await auth();
-  console.log(session);
-  console.log("yessssss");
+  // const session = await auth();
   //
   let displayData;
 
