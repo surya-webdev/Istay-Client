@@ -30,8 +30,8 @@ export default async function Navigation() {
             <>
               <img
                 className="h-10 w-10 rounded-3xl"
-                src={session.user.image}
-                alt={session.user.name}
+                src={session?.user.image}
+                alt={session?.user.name}
               />
               <Link
                 href="/account"

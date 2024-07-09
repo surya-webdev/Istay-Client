@@ -18,9 +18,10 @@ const authConfig = {
       // console.log(user);
       try {
         const getUser = await getGuest(user.email);
+        console.log("here is a users");
         console.log(getUser);
 
-        if (!getUser)
+        if (!getUser || getUser.length === 0)
           await createGuest({ fullName: user.name, email: user.email });
 
         return true;
@@ -30,9 +31,11 @@ const authConfig = {
       }
     },
     async session({ session }) {
-      const guest = await getGuest(session.user.email);
-
-      session.user.guestId = guest.at(0).id;
+      // console.log(session);
+      const guest = await getGuest(session?.user.email);
+      console.log("hereeeeeeeeeeeeeee");
+      console.log(guest);
+      session.user.guestId = guest?.at(0)?.id;
 
       return session;
     },

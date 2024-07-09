@@ -17,11 +17,14 @@ function ReservationCard({ booking }) {
     endDate,
     numNights,
     totalPrice,
+    cabinPrice,
     numGuests,
     status,
     created_at,
     cabins: { name, image },
   } = booking;
+
+  console.log(booking);
 
   return (
     <div className="flex border border-primary-800">
@@ -49,13 +52,11 @@ function ReservationCard({ booking }) {
             </span>
           )}
         </div>
-
+        {/* formatDistanceFromNow(startDate) */}
         <p className="text-lg text-primary-300">
           {format(new Date(startDate), "EEE, MMM dd yyyy")} (
-          {isToday(new Date(startDate))
-            ? "Today"
-            : formatDistanceFromNow(startDate)}
-          ) &mdash; {format(new Date(endDate), "EEE, MMM dd yyyy")}
+          {isToday(new Date(startDate)) ? "Today" : ""}) &mdash;{" "}
+          {format(new Date(endDate), "EEE, MMM dd yyyy")}
         </p>
 
         <div className="mt-auto flex items-baseline gap-5">

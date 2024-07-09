@@ -85,13 +85,12 @@ export async function createReservation(bookingData, formData) {
 
   const { startDate, endDate, id, cabinPrice, numNights } = bookingData;
 
-  console.log(cabinPrice, numNights);
   const newBooking = {
     cabinId: id,
     guestId: session?.user.guestId,
     startDate,
     endDate,
-    cabinPrice,
+    totalPrice: cabinPrice,
     numNights,
     isPaid: "false",
     extraPrice: 0,
@@ -101,8 +100,9 @@ export async function createReservation(bookingData, formData) {
     observations: formData.get("observations").slice(0, 500),
   };
 
-  // console.log(newBooking);
-
   await createBooking(newBooking);
-  // console.log(newBooking);
+
+  revalidatePath(`/cabins/${id}`);
+
+  redirect("/thankyou");
 }

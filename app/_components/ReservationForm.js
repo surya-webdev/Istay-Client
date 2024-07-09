@@ -3,9 +3,10 @@
 import { differenceInDays } from "date-fns";
 import { useReservation } from "./ReservationContext";
 import { createReservation } from "../_lib/actions";
+import { SubmitButton } from "./SubmitButton";
 
 function ReservationForm({ cabin, user }) {
-  const { range } = useReservation();
+  const { range, resetRange } = useReservation();
 
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
@@ -45,7 +46,12 @@ function ReservationForm({ cabin, user }) {
 
       {user ? (
         <form
-          action={handleData}
+          // action={handleData}
+          action={async (formData) => {
+            await handleData(formData);
+
+            resetRange();
+          }}
           className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg"
         >
           <div className="space-y-2">
@@ -84,9 +90,7 @@ function ReservationForm({ cabin, user }) {
               Start by selecting dates
             </p>
 
-            <button className="bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-              Reserve now
-            </button>
+            <SubmitButton pendingLabel="reserving.....">Submit</SubmitButton>
           </div>
         </form>
       ) : (

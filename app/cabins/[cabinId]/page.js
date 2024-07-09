@@ -7,6 +7,7 @@ import { Suspense } from "react";
 
 export async function generateMetadata({ params }) {
   const { cabinId } = params;
+  console.log(cabinId);
   return {
     title: ` Cabin ${cabinId}`,
   };
