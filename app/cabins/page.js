@@ -46,7 +46,7 @@ export default async function Page({ searchParams }) {
         Welcome to paradise.
       </p>
       <div className="flex justify-end">
-        <div className="my-4 border-[2px] border-primary-800">
+        <div className="my-4 border-[1px] border-primary-800">
           <Filter />
         </div>
       </div>
