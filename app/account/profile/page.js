@@ -8,7 +8,6 @@ export default async function Page() {
   // console.log(session);
   const user = await getGuest(session.user.email);
   const guest = user.at(0);
-  // console.log(guest);
 
   return (
     <div>

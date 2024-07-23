@@ -18,8 +18,8 @@ const authConfig = {
       // console.log(user);
       try {
         const getUser = await getGuest(user.email);
-        console.log("here is a users");
-        console.log(getUser);
+        // console.log("here is a users");
+        // console.log(getUser);
 
         if (!getUser || getUser.length === 0)
           await createGuest({ fullName: user.name, email: user.email });
@@ -33,8 +33,8 @@ const authConfig = {
     async session({ session }) {
       // console.log(session);
       const guest = await getGuest(session?.user.email);
-      console.log("hereeeeeeeeeeeeeee");
-      console.log(guest);
+      // console.log("hereeeeeeeeeeeeeee");
+      // console.log(guest);
       session.user.guestId = guest?.at(0)?.id;
 
       return session;
